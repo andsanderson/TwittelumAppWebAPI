@@ -6,10 +6,15 @@ import br.com.caelum.twittelumappweb.data.TweetRepository
 
 object ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 
-    private fun repository() = TweetRepository()
+    private val tweetRepository = TweetRepository()
 
-    @Suppress("UNCHECKED_CAST")
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = TweetViewModel(repository()) as T
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        return if (modelClass.name == TweetViewModel::class.java.name) {
+            modelClass.getConstructor(TweetRepository::class.java).newInstance(tweetRepository)
+        } else {
+            modelClass.getConstructor().newInstance()
+        }
+    }
 
 
 }
