@@ -34,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         listenerBottomNavigation()
 
         bottom_navigation.selectedItemId = R.id.menu_tweets
+        ftbAddTweet.setOnClickListener {startActivity(Intent(this, TweetActivity::class.java))}
+
     }
 
 

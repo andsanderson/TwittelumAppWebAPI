@@ -13,6 +13,7 @@ import br.com.caelum.twittelumappweb.viewmodel.TweetViewModel
 import br.com.caelum.twittelumappweb.viewmodel.ViewModelFactory
 import kotlinx.android.synthetic.main.lista_tweet_fragment.*
 
+
 class BuscadorDeTweetsFragmet:Fragment() {
 
 
@@ -52,14 +53,15 @@ class BuscadorDeTweetsFragmet:Fragment() {
 
       private fun filtraTweetsPelo (texto: String?):ArrayList<Tweet>{
           val filtrados = ArrayList<Tweet>()
-          if (!texto.isNullOrEmpty())
-          {
-              val tweets = viewModel.tweets()
-              val tweetsFiltrados = tweets.filter{tweet -> tweet.mensagem.contains(texto!!,true)}
-              filtrados.addAll(tweetsFiltrados)
-          }else{
+//          if (!texto.isNullOrEmpty())
+//          {
+//              val tweets = viewModel.tweets()
+//              //val tweetsFiltrados = tweets.filter{tweet -> tweet.mensagem.contains(texto!!,true)}
+//              val tweetsFiltrados =null
+//              filtrados.addAll(tweetsFiltrados)
+//          }else{
               filtrados.clear()
-          }
+          //}
           return filtrados
       }
 

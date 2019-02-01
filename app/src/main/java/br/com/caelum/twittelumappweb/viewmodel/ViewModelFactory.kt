@@ -5,11 +5,12 @@ import android.arch.lifecycle.ViewModelProvider
 import br.com.caelum.twittelumappweb.data.TweetRepository
 import br.com.caelum.twittelumappweb.data.UsuarioRepository
 import br.com.caelum.twittelumappweb.webclient.InicializadorDoRetrofit
+import br.com.caelum.twittelumappweb.webclient.TweetWebClient
 import br.com.caelum.twittelumappweb.webclient.UsuarioWebClient
 
 object ViewModelFactory : ViewModelProvider.NewInstanceFactory() {
 
-    private val tweetRepository = TweetRepository()
+    private val tweetRepository = TweetRepository(TweetWebClient(InicializadorDoRetrofit.retrofit))
     private val usuarioRepository = UsuarioRepository(UsuarioWebClient(InicializadorDoRetrofit.retrofit))
 
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {

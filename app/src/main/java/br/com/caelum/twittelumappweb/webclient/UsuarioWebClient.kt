@@ -12,15 +12,18 @@ class UsuarioWebClient(private val retrofit: Retrofit) {
 
     private val service = retrofit.create(UsuarioService::class.java)
 
-    fun cria(usuario: Usuario, sucesso:(usuario:Usuario)-> Unit)
+    fun cria(usuario: Usuario,
+             sucesso:(usuario:Usuario)-> Unit,
+             falha:(erro:Throwable)-> Unit
+    )
     {
         service.cria(usuario).enqueue(object :Callback<Usuario> {
             override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                falha(t)
             }
 
             override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-                response.body()?.let { sucesso }
+                response.body()?.let { sucesso(it) }
             }
         })
     }
@@ -30,11 +33,10 @@ class UsuarioWebClient(private val retrofit: Retrofit) {
     {
         service.loga(usuario).enqueue(object :Callback<Usuario> {
             override fun onFailure(call: Call<Usuario>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
             }
 
             override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
-                response.body()?.let { sucesso }
+                response.body()?.let(sucesso)
             }
         })
     }
