@@ -10,6 +10,7 @@ import android.view.MenuItem
 import br.com.caelum.twittelumappweb.R
 import br.com.caelum.twittelumappweb.fragment.BuscadorDeTweetsFragmet
 import br.com.caelum.twittelumappweb.fragment.ListaTweetsFragment
+import br.com.caelum.twittelumappweb.fragment.MapaFragment
 import br.com.caelum.twittelumappweb.viewmodel.TweetViewModel
 import br.com.caelum.twittelumappweb.viewmodel.UsuarioViewModel
 import br.com.caelum.twittelumappweb.viewmodel.ViewModelFactory
@@ -69,6 +70,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.menu_busca->{
                     exibe(BuscadorDeTweetsFragmet())
+                    true
+                }
+                R.id.menu_mapa->{
+                    exibe(MapaFragment())
                     true
                 }
                 else->{
